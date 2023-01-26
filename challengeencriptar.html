@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="style-challenge.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter&family=Kalam:wght@700&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <title>Encriptador Park</title>
+    </head>
+    <body>
+        
+        <header> 
+            <h1 class="logo"> <img src="Vector.png"></h1>
+         </header>
+        <main>
+        
+            <section class="section1">
+             <form id="formulario" >
+                <label for="textoencriptar" > </label>
+                <textarea id="textoencriptar"  class="encripta"  placeholder="Ingrese su texto aqui"></textarea> 
+               
+            </section> 
+            <section class="pepe">
+                <h3 class="advertencia">&#9888; Solo minúsculas y sin acentos</h3>
+                    <div class="centrar-boton">
+                <button type="button" id="encriptar" value="encriptar" >Encriptar</button>
+                <button type="button" id="desencriptar" >Desencriptar</button>
+                    </div>
+            </section>     
+
+            <section class="section2">
+                
+                <img src="Muñeco.png" alt="muñecoconlupa" class="muñeco">
+                   <div class="nomensaje">
+                   <h4 > Ningún mensaje fue encontrado</h4>  
+                   <h5 > Ingresa el texto que desees encriptar o desencriptar.</h5>
+                   </div>
+                <form>
+                    <label for="textodesencriptar" > </label>
+                    <textarea  id="textodesencriptar" class="desencripta"style="display:none" ></textarea>
+                  </form>
+                    <button type="button" id="copiar" style="display:none">copiar</button>
+               </section>
+            </form>
+         </div>
+            
+        
+
+            
+           
+        <section id="popup" style="display: none;">
+         <div class="centradopop">
+          <video id="vid" autoplay loop >
+          <source src="ahahah.mp4" type="video/mp4" >
+          </video> 
+            <h2 class="popup-texto" >No se permiten acentos ni caracteres especiales, vuelva a intentarlo</h2>
+             <button type="button" id="cerrarpopup"  onclick="cerrarpopup()" >Reintentar</button>
+         </div>
+        </section>
+        
+            
+        </main>
+        <footer>
+            <a href="https://github.com/damiancampania">
+            <p class="copyright">Desarrollado por Damian Campaña Email: damiancampania@gmail.com ,2023 Primer proyecto en javascript </p>
+           </a>
+                    
+           </footer>        
+    </body>           
+               
+</html>
+
+<script>
+
+
+//reproduce pop up
+function reproducir() {
+var video =document.getElementById("vid");
+var popup =document.getElementById("popup");
+popup.style.display= "inline-block";
+//modal.classList.add("modal-show");
+console.log ("funcion anda");
+if (video.paused){
+    video.play();
+    console.log("video lo toma");
+}
+}
+//cierra popup y pausa video
+function cerrarpopup() {
+var video =document.getElementById("vid");
+var popup =document.getElementById("popup");
+popup.style.display= "none";
+//modal.classList.add("modal-show");
+
+if (video.play){
+    video.pause();
+}
+};
+
+//encirpta texto
+function textoencripta(){
+   var abecedario=["á","é","í","ó","ú","#","$","%","&","/","(",")","=","¨","*","´","+","[","]","{","}",";",":","_","-","'",];
+   var video =document.getElementById("vid");
+   var text= document.querySelector("#textoencriptar").value.toLowerCase();
+    for (t=0 ; t<text.length; t++){
+         for (array=0; array<abecedario.length; array++){
+if (text[t]== abecedario[array]){
+    var text=0;
+    var btn2=document.querySelector("#copiar");
+    btn2.style.display= "none"; //no activa el boton copiar
+    var campoEncriptado=document.querySelector("#textodesencriptar");
+    campoEncriptado.style.display="none"; //permite que el campo no tape la imagen
+    document.querySelector("#textodesencriptar").innerHTML=""; //limpia el campo encriptado en caso de que tenga texto
+    formulario.reset(); //resetea el formulario de entrada
+    reproducir(); //reproduce pop up
+} } }  
+//si el texto ingresado se encuentra autorizado encripta
+    if (text!=0 )  {
+    var texto= document.querySelector("#textoencriptar").value.toLowerCase();
+    var texto=  texto.replaceAll("e","enter");
+    var texto=  texto.replace(/i/gim,"imes"); //sirve cualquiera de los dos para reemplazar solo que este tambien lee mayusculas (linea a modo de ejemplo)
+    var texto=  texto.replaceAll("a", "ai");
+    var texto=  texto.replaceAll("o","ober");
+    var texto=  texto.replaceAll("u","ufat");  
+    document.querySelector("#textodesencriptar").innerHTML=texto ;
+    var btn2=document.querySelector("#copiar");
+    btn2.style.display= "inline-block"; //activa el boton copiar
+    var campoEncriptado=document.querySelector("#textodesencriptar");
+    campoEncriptado.style.display="inline-block"; //permite que el campo  tape la imagen
+}}     
+
+        function textodesencripta(){
+        var abecedario=["á","é","í","ó","ú","#","$","%","&","/","(",")","=","¨","*","´","+","[","]","{","}",";",":","_","-","'",];
+        var video =document.getElementById("vid");
+        var text= document.querySelector("#textoencriptar").value.toLowerCase();
+         for (t=0 ; t<text.length; t++){
+           for (array=0; array<abecedario.length; array++){
+          if (text[t]== abecedario[array]){
+          var text=0;
+          var btn2=document.querySelector("#copiar");
+          btn2.style.display= "none"; //no activa el boton copiar
+          var campoEncriptado=document.querySelector("#textodesencriptar");
+          campoEncriptado.style.display="none"; //permite que el campo no tape la imagen
+          document.querySelector("#textodesencriptar").innerHTML=""; //limpia el campo encriptado en caso de que tenga texto
+        formulario.reset(); //resetea el formulario de entrada
+        reproducir(); //reproduce pop up
+} } }  
+//si el texto ingresado se encuentra autorizado encripta
+        if (text!=0 )  {    
+        var texto= document.querySelector("#textoencriptar").value.toLowerCase();
+        var text= texto; 
+        var texto=  texto.replaceAll("enter","e");
+        var texto=  texto.replace(/imes/gim,"i"); //sirve cualquiera de los dos para reemplazar solo que este tambien lee mayusculas (linea a modo de ejemplo)
+        var texto=  texto.replaceAll("ai", "a");
+        var texto=  texto.replaceAll("ober","o");
+        var texto=  texto.replaceAll("ufat","u");  
+        document.querySelector("#textodesencriptar").innerHTML=texto;
+        var btn2=document.querySelector("#copiar");
+        btn2.style.display= "inline-block"; //activa el boton copiar
+        var campoEncriptado=document.querySelector("#textodesencriptar");
+        campoEncriptado.style.display="inline-block"; //permite que el campo  tape la imagen
+        }
+    }
+
+   function botonCopiar(){
+    
+    var textocopiado=document.querySelector("#textodesencriptar").value;
+    navigator.clipboard.writeText(textocopiado);
+    alert ("mensaje copiado");
+   }
+
+var btn= document.querySelector("#encriptar");
+btn.onclick=textoencripta;
+var btn1= document.querySelector("#desencriptar");
+btn1.onclick=textodesencripta;
+var btn2= document.querySelector("#copiar");
+btn2.onclick=botonCopiar;
+</script>
+
+
